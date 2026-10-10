@@ -1,0 +1,26 @@
+.fayoum-final-backdrop{background:#1c3047 url('../assets/fayoum-map-clean.png?v=20261007-1') center/cover no-repeat;filter:brightness(.82);transform:scale(1.02)}
+.fayoum-final-header,.fayoum-final-back,.fayoum-final-copy,.fayoum-final-mascot,.fayoum-legend{display:flex}
+.fayoum-final-back{display:block}
+.fayoum-final-copy{display:block}
+.fayoum-final-copy{top:16%}
+.fayoum-legend{display:flex}
+.fayoum-final-routes{display:block}
+.fayoum-card img.fayoum-thumb{display:block;object-fit:cover;width:110px;height:62px;background:#0f3754;border-radius:7px}
+.fayoum-thumb{display:grid;place-items:center;width:110px;height:62px;border-radius:7px;color:#0b2c45;font-size:1.4rem;background:linear-gradient(145deg,#66e1dd,#0879a9);box-shadow:inset 0 0 0 1px #ffffff66}
+.fayoum-thumb.fossils{background:linear-gradient(145deg,#ead09b,#9d673e)}
+.fayoum-thumb.archaeology{background:linear-gradient(145deg,#e7d4f4,#7e6a9d)}
+.fayoum-thumb.villages-and-art{background:linear-gradient(145deg,#ffc76d,#d86d35)}
+.fayoum-pin{opacity:.94}
+.fayoum-open .site-shell{visibility:hidden;pointer-events:none}
+.fayoum-final-mascot{transition:transform .25s ease,filter .25s ease}
+.fayoum-final-mascot.is-reacting{transform:translateY(-8px) scale(1.025);filter:drop-shadow(0 0 18px rgba(83,227,255,.48))}
+.fayoum-final-mascot.is-reacting img{animation:fayoum-felfel-wave .65s ease-in-out}
+@keyframes fayoum-felfel-wave{0%,100%{transform:rotate(0)}35%{transform:rotate(-3deg) translateY(-3px)}70%{transform:rotate(3deg) translateY(-2px)}}
+.fayoum-final-copy{display:none!important}
+.fayoum-pin[hidden],.fayoum-card[hidden]{display:none!important}
+.fayoum-legend{left:50%;right:auto;bottom:2%;transform:translateX(-50%);display:flex;gap:6px;max-width:min(90vw,720px);padding:7px 9px;white-space:nowrap;overflow:auto;background:#05203fee}
+.fayoum-legend button{border:1px solid #9aceed66;border-radius:8px;background:#0a2f4dcc;color:#fff;padding:7px 10px;font:inherit;font-size:.65rem;cursor:pointer;white-space:nowrap}
+.fayoum-legend button:hover,.fayoum-legend button:focus-visible,.fayoum-legend button.is-active{border-color:#edc36d;background:#edc36d;color:#10243a;outline:0}
+@media(max-width:760px){.fayoum-legend{left:50%;bottom:1%;max-width:92vw;gap:4px}.fayoum-legend button{padding:6px 8px;font-size:.55rem}}
+@media(max-width:1200px) and (min-width:761px){.fayoum-thumb,.fayoum-card img.fayoum-thumb{width:82px;height:58px}}
+@media(max-width:760px){.fayoum-thumb{width:57px;height:45px}.fayoum-final-backdrop{background-size:cover}}

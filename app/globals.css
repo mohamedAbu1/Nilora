@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tailwind is now the app's utility layer. The legacy visual system remains
+   scoped to the migrated page so the existing experience stays pixel-stable. */
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #092438;
+}
+
+body.auth-open,
+body.panel-open,
+body.destination-open,
+body.luxor-open,
+body.nile-cruise-open,
+body.nile-deck-open {
+  overflow: hidden;
+}
