@@ -73,3 +73,7 @@
 .nile-deck-cta{min-width:190px;padding:12px 18px;box-shadow:0 8px 24px #edc36d44}
 @media(max-width:900px){.nile-deck-head{inset:12px 14px auto}.nile-deck-tabs{top:112px;left:14px;right:14px;overflow:auto;justify-content:flex-start;padding-bottom:4px}.nile-deck-tabs button{flex:none;padding:8px 14px}.nile-deck-info{left:14px;right:14px;bottom:14px;grid-template-columns:1fr 1fr;gap:10px;padding:14px}.nile-deck-info .nile-deck-kicker,.nile-deck-info .nile-deck-name,.nile-deck-info .nile-deck-intro{grid-column:1/-1}.nile-deck-features{grid-column:1/-1}.nile-deck-cta{grid-column:1/-1}}
 @media(max-width:560px){.nile-deck-dialog{height:100vh}.nile-deck-head h2{font-size:1.6rem}.nile-deck-head span{display:none}.nile-deck-hotspots button{font-size:.62rem}.nile-deck-info{max-height:42vh;overflow:auto}.nile-deck-features{grid-template-columns:1fr}.nile-deck-cta{min-width:0}}
+
+/* Lighten the map-side overlay so the right side matches the rest of the map. */
+.luxor-final-wash{background:linear-gradient(90deg,rgba(2,15,31,.34),rgba(2,15,31,.04) 52%,rgba(2,15,31,.2)),linear-gradient(0deg,rgba(2,15,31,.26),transparent 42%)}
+.luxor-final-panel{background:linear-gradient(145deg,rgba(16,76,112,.78),rgba(4,35,62,.72));box-shadow:0 18px 60px rgba(0,0,0,.35),0 0 24px rgba(83,227,255,.12)}
