@@ -6,7 +6,7 @@ const legacyScripts = [
   'translations.js', 'itinerary.js', 'app.js', 'auth.js', 'destination-enhancements.js',
   'destination.js', 'luxor-final.js',
   'luxor-brand-fix.js', 'luxor-card-assets.js', 'luxor-language-fix.js', 'fayoum-final.js?v=20261008-2',
-  'luxor-hover-guide.js', 'cruise-labels.js', 'luxor-nile-deck.js', 'nile-cruise.js', 'accessibility.js',
+  'luxor-hover-guide.js', 'cruise-labels.js', 'luxor-nile-deck.js', '/cairo.js?v=20261015-2', 'nile-cruise.js', '/redsea.js?v=20261014-2', 'accessibility.js',
 ];
 
 export default function NiloraLegacyPage() {
@@ -30,12 +30,15 @@ export default function NiloraLegacyPage() {
         const markup = documentSource.body.innerHTML.replaceAll('assets/', '/legacy/assets/');
         if (cancelled) return;
         container.innerHTML = markup;
+        const cairoFilterLayerFix = document.createElement('style');
+        cairoFilterLayerFix.textContent = '.cairo-view .cairo-legend{z-index:16}.cairo-view .cairo-legend button{position:relative;z-index:1}';
+        container.appendChild(cairoFilterLayerFix);
 
         for (const file of legacyScripts) {
           if (cancelled) return;
           await new Promise<void>((resolve) => {
             const script = document.createElement('script');
-            script.src = `/legacy/js/${file}`;
+            script.src = file.startsWith('/') ? file : `/legacy/js/${file}`;
             let settled = false;
             const finish = () => {
               if (settled) return;

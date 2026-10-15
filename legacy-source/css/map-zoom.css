@@ -1,0 +1,99 @@
+/* Unified map framing: preserve the artwork and reserve a comfortable 82% content area. */
+:root {
+  --nilora-map-content: 82%;
+}
+
+/* Home map: keep the original artwork at full cover; only the content spacing is tuned. */
+.map-hero {
+  background-position: center center !important;
+  background-size: cover !important;
+}
+
+.map-hero::before {
+  inset: 0 !important;
+  z-index: -1 !important;
+  background:
+    linear-gradient(90deg, rgba(2,15,31,.74), rgba(2,15,31,.2) 32%, transparent 60%),
+    linear-gradient(0deg, rgba(2,15,31,.65), transparent 30%),
+    url('../assets/nilora-map-bg.png') center / cover no-repeat !important;
+  transform: none;
+}
+
+/* Destination maps: full background, with spacing handled by the foreground layout. */
+.destination-backdrop,
+.luxor-final-backdrop,
+.nile-cruise-backdrop {
+  inset: 0 !important;
+  transform: none !important;
+  transform-origin: center center !important;
+  animation: none !important;
+  background-size: cover !important;
+}
+
+.destination-view,
+.luxor-final-view,
+.nile-cruise-view {
+  background-color: #06182c;
+}
+
+/* Rebalance map-side content after the unified framing. */
+.map-point,
+.local-pin,
+.luxor-final-pin,
+.nile-cruise-stop {
+  touch-action: manipulation;
+}
+
+@media (min-width: 851px) {
+  /* Keep the map visually dominant while leaving a clear reading column for controls. */
+  .nile-cruise-main {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 31%);
+    gap: 2%;
+    padding-inline: 4.5% 3.5%;
+  }
+
+  .nile-cruise-map {
+    min-width: 0;
+    padding-inline: clamp(1rem, 2vw, 2.75rem);
+  }
+
+  .luxor-final-pins,
+  .destination-map {
+    inset: 0 2.5%;
+  }
+}
+
+@media (max-width: 760px) {
+  .map-hero::before {
+    background-position: 54% center !important;
+  }
+
+  .destination-backdrop,
+  .luxor-final-backdrop,
+  .nile-cruise-backdrop {
+    background-position: center center !important;
+  }
+}
+
+@media (max-width: 850px) {
+  .nile-cruise-main {
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .nile-cruise-map {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .map-hero::before,
+  .destination-backdrop,
+  .luxor-final-backdrop,
+  .nile-cruise-backdrop {
+    transition: none !important;
+  }
+}

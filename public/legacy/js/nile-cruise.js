@@ -29,7 +29,7 @@
   }
 
   function wire() {
-    const close = () => { view.classList.remove('is-visible'); window.setTimeout(() => { view.hidden = true; document.body.classList.remove('nile-cruise-open'); }, 260); history.replaceState(null, '', location.pathname); if (lastFocus && document.contains(lastFocus)) { lastFocus.focus(); lastFocus = null; } };
+    const close = () => { const returnToCairo = document.body.classList.contains('cairo-open'); view.classList.remove('is-visible'); window.setTimeout(() => { view.hidden = true; document.body.classList.remove('nile-cruise-open'); }, 260); history.replaceState(null, '', returnToCairo ? '#destination/cairo' : location.pathname); if (lastFocus && document.contains(lastFocus)) { lastFocus.focus(); lastFocus = null; } };
     const open = (trigger) => {
       if (trigger && typeof trigger.focus === 'function') lastFocus = trigger;
       build();

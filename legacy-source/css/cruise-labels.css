@@ -1,0 +1,48 @@
+.luxor-final-cruise-label {
+  position: absolute;
+  z-index: 8;
+  left: 51%;
+  top: 79%;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px 6px 7px;
+  border: 1px solid rgba(237, 195, 109, .92);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(5, 38, 67, .96), rgba(3, 21, 40, .96));
+  color: #fff;
+  box-shadow: 0 7px 18px rgba(0, 0, 0, .4), 0 0 15px rgba(237, 195, 109, .18);
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.luxor-final-cruise-label span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #edc36d;
+  color: #12283d;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.luxor-final-cruise-label b {
+  font: 800 .72rem Cairo, system-ui, sans-serif;
+}
+
+.luxor-final-cruise-label:hover,
+.luxor-final-cruise-label:focus-visible {
+  border-color: #fff;
+  outline: 0;
+  transform: translate(-50%, -50%) translateY(-3px);
+}
+
+@media (max-width: 760px) {
+  .luxor-final-cruise-label {
+    left: 51%;
+    top: 43%;
+    z-index: 13;
+  }
+}
