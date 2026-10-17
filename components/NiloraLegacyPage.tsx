@@ -1,6 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { installNileCruiseRedesign } from './nileCruiseRedesign';
+import { installUnifiedDestinationHeaders } from './unifiedDestinationHeader';
+import { installUnifiedDestinationPanels } from './unifiedDestinationPanel';
 
 const legacyScripts = [
   'translations.js', 'itinerary.js', 'app.js', 'auth.js', 'destination-enhancements.js',
@@ -63,6 +66,9 @@ export default function NiloraLegacyPage() {
         // The original scripts were designed for a static document and use
         // DOMContentLoaded for locale setup. Replay it after React mounts them.
         document.dispatchEvent(new Event('DOMContentLoaded'));
+        installNileCruiseRedesign();
+        installUnifiedDestinationHeaders();
+        installUnifiedDestinationPanels();
       } catch (loadError) {
         if (!cancelled) console.error(loadError);
       }
