@@ -73,7 +73,13 @@ export function installUnifiedDestinationHeaders() {
   });
 
   apply();
-  const observer = new MutationObserver(apply);
+  const observer = new MutationObserver((mutations) => {
+    const relevant = mutations.some((mutation) => Array.from(mutation.addedNodes).some((node) => {
+      if (!(node instanceof HTMLElement)) return false;
+      return headerDefinitions.some((definition) => node.matches(definition.view) || Boolean(node.querySelector(definition.header)));
+    }));
+    if (relevant) apply();
+  });
   observer.observe(document.body, { childList: true, subtree: true });
 }
 

@@ -72,7 +72,10 @@ const addUnifiedFooter = (panel: HTMLElement, definition: PanelDefinition) => {
 const updateUnifiedCount = (panel: HTMLElement, definition: PanelDefinition) => {
   const cards = Array.from(panel.querySelectorAll<HTMLElement>(definition.cards));
   const selected = cards.filter((card) => card.classList.contains('is-selected') || card.classList.contains('is-active') || card.querySelector<HTMLInputElement>('input')?.checked).length;
-  panel.querySelectorAll<HTMLElement>('.nilora-unified-count').forEach((node) => { node.textContent = String(selected); });
+  const nextValue = String(selected);
+  panel.querySelectorAll<HTMLElement>('.nilora-unified-count').forEach((node) => {
+    if (node.textContent !== nextValue) node.textContent = nextValue;
+  });
 };
 
 const normalizePanel = (view: HTMLElement, definition: PanelDefinition) => {
@@ -116,13 +119,30 @@ export function installUnifiedDestinationPanels() {
   stylesheet.textContent = styles;
   document.head.appendChild(stylesheet);
 
-  const apply = () => panelDefinitions.forEach((definition) => {
+  const observedPanels = new WeakSet<HTMLElement>();
+  const observePanel = (panel: HTMLElement, definition: PanelDefinition) => {
+    if (observedPanels.has(panel)) return;
+    observedPanels.add(panel);
+    const observer = new MutationObserver(() => updateUnifiedCount(panel, definition));
+    observer.observe(panel, { subtree: true, attributes: true, attributeFilter: ['class', 'checked', 'aria-pressed'] });
+  };
+  const applyAndObserve = () => panelDefinitions.forEach((definition) => {
     const view = document.querySelector<HTMLElement>(definition.view);
-    if (view) normalizePanel(view, definition);
+    const panel = view?.querySelector<HTMLElement>(definition.panel);
+    if (view && panel) {
+      normalizePanel(view, definition);
+      observePanel(panel, definition);
+    }
   });
-  apply();
-  const observer = new MutationObserver(apply);
-  observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'checked', 'aria-pressed'] });
+  applyAndObserve();
+  const observer = new MutationObserver((mutations) => {
+    const relevant = mutations.some((mutation) => Array.from(mutation.addedNodes).some((node) => {
+      if (!(node instanceof HTMLElement)) return false;
+      return panelDefinitions.some((definition) => node.matches(definition.view) || Boolean(node.querySelector(definition.panel)));
+    }));
+    if (relevant) applyAndObserve();
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
 }
 
 declare global {
